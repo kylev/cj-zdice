@@ -11,4 +11,9 @@
 (defpage "/about" []
   (common/layout
     [:h1 "About CJ-Zdice"]
-    [:p "This is going to be " (link-to "somewhere" "Zombie Dice") " in Clojure."]))
+    [:p "I am attempting to learn "
+        (link-to "htttp://www.clojure.org/" "Clojure")
+        " by implementing the excellent game of "
+        (link-to "http://www.sjgames.com/dice/zombiedice/" "Zombie Dice")
+        ". You should really just go buy it."]
+    (common/amazon)))
