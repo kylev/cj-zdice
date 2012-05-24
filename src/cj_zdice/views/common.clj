@@ -1,6 +1,7 @@
 (ns cj-zdice.views.common
   (:use [noir.core :only [defpartial]]
-        [hiccup.page-helpers :only [include-css include-js html5 link-to]]))
+        [hiccup.page :only [include-css include-js html5]]
+        [hiccup.element :only [link-to]]))
 
 (defpartial link-bar []
   [:ul.nav

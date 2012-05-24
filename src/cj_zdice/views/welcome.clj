@@ -2,7 +2,7 @@
   (:require [cj-zdice.views.common :as common])
   (:use [noir.core :only [defpage]]
         [hiccup.core :only [html]]
-        [hiccup.page-helpers]))
+        [hiccup.element :only [link-to]]))
 
 (defpage "/" []
   (common/layout
