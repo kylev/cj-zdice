@@ -9,7 +9,14 @@
   [desired]
   (first (filter #(= desired (% :kind)) dice-kinds)))
 
+(def dice-cup (concat (repeat 6 (dice-of :green)) (repeat 4 (dice-of :yellow)) (repeat 3 (dice-of :red))))
+
 (defn dice-roll
   "Roll the list of dice and return their visible variants."
   [dice]
   (map #(hash-map :kind (% :kind) :showing (rand-nth (% :sides))) dice))
+
+; (defn dice-n
+;   "Return n random dice from the given list."
+;   [n]
+;   )
