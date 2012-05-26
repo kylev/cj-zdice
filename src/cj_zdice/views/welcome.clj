@@ -11,7 +11,9 @@
 (defpage "/about" []
   (common/layout
     [:p "I am attempting to learn "
-        (link-to "htttp://www.clojure.org/" "Clojure")
+        (link-to "http://www.clojure.org/" "Clojure")
+        " and "
+        (link-to "http://www.webnoir.org/" "Noir")
         " by implementing the excellent game of "
         (link-to "http://www.sjgames.com/dice/zombiedice/" "Zombie Dice")
         ". You should really just go buy it."]))
