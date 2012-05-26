@@ -19,7 +19,14 @@ header {
   color: white;
 }
 
+nav {
+  background: #222;
+}
+
 footer {
   background: #eee;
   color: #444;
 }
+
+/* /score elements */
+#playerlist { list-style-type: none; margin: 0; padding: 0; width: 60%; }

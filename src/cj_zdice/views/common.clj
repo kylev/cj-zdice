@@ -7,15 +7,18 @@
 
 (defpartial ym-wrap [content] [:div.ym-wrapper [:div.ym-wbox content]])
 
-(defpartial link-bar []
-  [:ul.nav
-    [:li (link-to "/about" "About")]])
-
 ; Layout compontents
 
 (defpartial page-header []
   [:header
     (ym-wrap [:h1 "Zombie Dice"])])
+
+(defpartial page-nav []
+  [:nav#nav
+    [:div.ym-wrapper.ym-hlist
+      [:ul
+        [:li (link-to "/about" "About")]
+        [:li (link-to "/score" "Scorer")]]]])
 
 (defpartial page-footer []
   [:footer
@@ -39,6 +42,7 @@
       (include-js "/js/jquery-1.7.2.min.js" "/js/jquery-ui-1.8.20.custom.min.js" "/js/zd.js")]
     [:body
       (page-header)
+      (page-nav)
       [:div#main (ym-wrap
         [:div.ym-grid [:div.ym-g80.ym-gl content] [:div.ym-g20.ym-gr (amazon)]])]
       (page-footer)]))
