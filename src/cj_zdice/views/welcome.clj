@@ -16,4 +16,7 @@
         (link-to "http://www.webnoir.org/" "Noir")
         " by implementing the excellent game of "
         (link-to "http://www.sjgames.com/dice/zombiedice/" "Zombie Dice")
-        ". You should really just go buy it."]))
+        ". You should really just go "
+        (link-to "http://www.amazon.com/gp/product/B003IKMR0U/ref=as_li_ss_tl?ie=UTF8&tag=kylevcom-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=B003IKMR0U" "buy it")
+        "."]
+    ))
