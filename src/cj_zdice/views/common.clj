@@ -36,7 +36,7 @@
       [:title "Zombie Dice"]
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}] ; YAML mobile viewport optimization
       (include-css "/css/zd.css")
-      (include-js "/js/jquery-1.7.2.min.js" "/js/backbone-min.js" "/js/zd.js")]
+      (include-js "/js/jquery-1.7.2.min.js" "/js/jquery-ui-1.8.20.custom.min.js" "/js/zd.js")]
     [:body
       (page-header)
       [:div#main (ym-wrap
