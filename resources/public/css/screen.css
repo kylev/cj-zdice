@@ -1,0 +1,25 @@
+.ym-wrapper {
+  max-width: 80em;
+  margin: 0 auto;
+}
+
+.ym-wbox {
+  padding: 1.5em;
+}
+
+body > header,
+body > nav,
+body > #main,
+body > footer {
+  min-width: 760px;
+}
+
+header {
+  background: #444;
+  color: white;
+}
+
+footer {
+  background: #eee;
+  color: #444;
+}
