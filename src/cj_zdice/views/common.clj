@@ -43,6 +43,5 @@
     [:body
       (page-header)
       (page-nav)
-      [:div#main (ym-wrap
-        [:div.ym-grid [:div.ym-g80.ym-gl content] [:div.ym-g20.ym-gr (amazon)]])]
+      [:div#main (ym-wrap content)]
       (page-footer)]))
