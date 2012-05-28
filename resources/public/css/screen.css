@@ -30,11 +30,7 @@ footer {
 
 /* /score elements */
 #playerlist {
-  list-style-type: none;
   margin: 0;
   padding: 0;
-  width: 60%; }
-
-#playerlist .ui-selected {
-  background: #200;
+  width: 60%;
 }

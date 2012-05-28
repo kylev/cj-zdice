@@ -5,11 +5,12 @@
 
 (defpartial player-container [pname]
   [:li [:div.playerline (str pname ": ") [:span.score "0"]]
-       [:div.controls [:button.nexplayer "Next"] [:button.score-plus "+"] [:button.score-minus "-"]]])
+       [:div.controls [:button.nextplayer "Next"] [:button.score-plus "+"] [:button.score-minus "-"]]])
 
 (defpage "/score" []
   (common/layout
+    [:button#start "Start!"]
     [:ul#playerlist
       (player-container "First Player")
       (player-container "Second Player")]
-    (javascript-tag "$(ready_scorer)")))
+    (javascript-tag "$(scorer_ready)")))
