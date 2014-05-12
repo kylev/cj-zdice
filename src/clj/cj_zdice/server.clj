@@ -1,7 +1,19 @@
 (ns cj-zdice.server
-  (:require [noir.server :as server]))
+  (:require [ring.util.response :refer [file-response]]
+            [ring.adapter.jetty :refer [run-jetty]]
+            [compojure.core :refer [defroutes GET]]))
 
-(server/load-views "src/cj_zdice/views/")
+(defn index []
+  (file-response "public/html/index.html" {:root "resources"}))
+
+(defroutes routes
+  (GET "/" [] (index)))
+
+(def app
+  (-> routes))
+
+(defonce server
+  (run-jetty #'app {:port 8080 :join? false}))
 
 (defn -main [& m]
   (let [mode (keyword (or (first m) :dev))
