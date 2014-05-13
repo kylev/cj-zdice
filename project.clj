@@ -6,15 +6,19 @@
                  [om "0.6.2"]
                  [compojure "1.1.6"]]
 
-  ; :main cj-zdice.server
+  :min-lein-version "2.0.0"
+  :uberjar-name "cj-zdice-standalone.jar"
 
   :plugins [[lein-cljsbuild "1.0.2"]]
+
+  :hooks [leiningen.cljsbuild]
 
   :source-paths ["src/clj" "src/cljs"]
   :resource-paths ["resources"]
 
   :cljsbuild {
     :builds [{:id "dev"
+              :jar true
               :source-paths ["src/clj" "src/cljs"]
               :compiler {
                 :output-to "resources/public/js/main.js"
