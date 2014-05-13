@@ -6,7 +6,7 @@
                  [om "0.6.2"]
                  [compojure "1.1.6"]]
 
-  :min-lein-version "2.0.0"
+  :min-lein-version "2.1.2"
   :uberjar-name "cj-zdice-standalone.jar"
 
   :plugins [[lein-cljsbuild "1.0.2"]]
