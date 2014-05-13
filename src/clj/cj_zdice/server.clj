@@ -14,14 +14,13 @@
 (def app
   (-> routes))
 
-(defonce server
-  (run-jetty #'app {:port 8080 :join? false}))
+;(defonce server
+;  (run-jetty #'app {:port 8080 :join? false}))
 
 
 ;; Disabled server stuff for now.
-#_(defn -main [& m]
+(defn -main [& m]
   (let [mode (keyword (or (first m) :dev))
-        port (Integer. (get (System/getenv) "PORT" "8080"))]
-    (server/start port {:mode mode
-                        :ns 'cj-zdice})))
+        port (Integer. (get (System/getenv) "PORT" "5000"))]
+    (run-jetty #'app {:port 5000 :join? false})))
 
