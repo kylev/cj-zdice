@@ -12,7 +12,8 @@
 
 ;; UUID as game identifier.
 (defn uuid [] (str (java.util.UUID/randomUUID)))
-(uuid)
+(def uuid-regex #"[a-f\d\-]{36}")
+
 ;; URL handlers
 (defn index []
   (file-response "public/html/index.html" {:root "resources"}))
@@ -27,7 +28,7 @@
 (defroutes routes
   (GET "/" [] (index))
   (POST "/game" [] (start-game))
-  (GET ["/game/:id" :id #"[a-f\d\-]{36}"] [id] (get-game id))
+  (GET ["/game/:id" :id uuid-regex] [id] (get-game id))
   (route/files "/" {:root "resources/public"}))
 
 (def app
