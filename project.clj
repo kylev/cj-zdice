@@ -1,15 +1,16 @@
 (defproject cj-zdice "0.2.0-SNAPSHOT"
   :description "FIXME: write this!"
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2202"]
+                 [org.clojure/clojurescript "0.0-2173"]
                  [ring/ring "1.2.2"]
+                 [com.taoensso/carmine "2.6.2"]
                  [om "0.6.2"]
                  [compojure "1.1.6"]]
 
   :min-lein-version "2.1.2"
   :uberjar-name "cj-zdice-standalone.jar"
 
-  :plugins [[lein-cljsbuild "1.0.3"]]
+  :plugins [[lein-cljsbuild "1.0.2"]]
 
   :hooks [leiningen.cljsbuild]
 
