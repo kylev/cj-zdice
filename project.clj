@@ -18,10 +18,10 @@
 
   :cljsbuild {
     :builds [{:id "dev"
-              :jar true
-              :source-paths ["src/clj" "src/cljs"]
+              :source-paths ["src/cljs"]
               :compiler {
                 :output-to "resources/public/js/main.js"
                 :output-dir "resources/public/js/out"
                 :optimizations :none
-                :source-map true}}]})
+                :pretty-print true
+                :source-map "resources/public/js/main.js.map"}}]})
