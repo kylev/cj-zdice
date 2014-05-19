@@ -5,7 +5,8 @@
                  [ring/ring "1.2.2"]
                  [com.taoensso/carmine "2.6.2"]
                  [om "0.6.2"]
-                 [compojure "1.1.6"]]
+                 [compojure "1.1.6"]
+                 [fogus/ring-edn "0.2.0"]]
 
   :min-lein-version "2.1.2"
   :uberjar-name "cj-zdice-standalone.jar"
