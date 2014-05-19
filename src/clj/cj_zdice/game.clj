@@ -1,4 +1,4 @@
-(ns cj-zdice.models.game)
+(ns cj-zdice.game)
 
 (def dice-kinds [{:kind :green,  :sides (concat (repeat 3 :brain) (repeat 2 :runner) (repeat 1 :bang))}
                  {:kind :yellow, :sides (concat (repeat 2 :brain) (repeat 2 :runner) (repeat 2 :bang))}
@@ -16,7 +16,5 @@
   [dice]
   (map #(hash-map :kind (% :kind) :showing (rand-nth (% :sides))) dice))
 
-; (defn dice-n
-;   "Return n random dice from the given list."
-;   [n]
-;   )
+(defn new []
+  {})
