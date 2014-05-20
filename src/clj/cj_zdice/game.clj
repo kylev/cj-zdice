@@ -9,12 +9,18 @@
   [desired]
   (first (filter #(= desired (% :kind)) dice-kinds)))
 
-(def dice-cup (concat (repeat 6 (dice-of :green)) (repeat 4 (dice-of :yellow)) (repeat 3 (dice-of :red))))
+(defn dice-cup [] (concat (repeat 6 (dice-of :green)) (repeat 4 (dice-of :yellow)) (repeat 3 (dice-of :red))))
+
+;; (dice-cup)
 
 (defn dice-roll
   "Roll the list of dice and return their visible variants."
   [dice]
   (map #(hash-map :kind (% :kind) :showing (rand-nth (% :sides))) dice))
 
-(defn new []
-  {})
+(defn new
+  "Create a new game with initial state."
+  []
+  {:turn 0
+   :players []
+   :cup (dice-cup)})
