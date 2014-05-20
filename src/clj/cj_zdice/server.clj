@@ -2,15 +2,10 @@
   (:require [ring.util.response :refer [file-response]]
             [ring.adapter.jetty :refer [run-jetty]]
             [ring.middleware.edn :refer [wrap-edn-params]]
-            [taoensso.carmine :as car :refer (wcar)]
             [compojure.core :refer [defroutes GET POST]]
             [compojure.route :as route]
-            [cj-zdice.game :as game]))
-
-;; Redis connection (TODO configs)
-(def redis-conn {:pool {} :spec {}})
-(defmacro wcar* [& body]
-  `(car/wcar redis-conn ~@body))
+            [cj-zdice.game :as game]
+            [cj-zdice.store :as gstore]))
 
 ;; UUID as game identifier.
 (defn uuid [] (str (java.util.UUID/randomUUID)))
@@ -26,29 +21,29 @@
 (defn index []
   (file-response "public/html/index.html" {:root "resources"}))
 
-(defn start-game []
-  (edn-response (assoc (game/new) :id (uuid))))
-
-;; (def test-game "89230829-9d8f-4dfe-9c46-c93d5620e8f1")
-;; (wcar* (car/set test-game {}))
-;; (wcar* (car/get test-game))
+(defn start-game-request []
+  (let [new-game (assoc (game/new) :id (uuid))]
+    (gstore/save new-game)
+    (edn-response new-game)))
 
 (defn get-game-request
   "Get a stored game. 404 if it doesn't exist."
   [id]
-  (let [game (wcar* (car/get id))]
+  (let [game (gstore/load id)]
     (if (nil? game)
       {:status 404}
       (edn-response game))))
 
-(defn roll-dice [id])
+(defn roll-dice-request
+  "Perform a roll transformation on the games state."
+  [id])
 
 ;; Routes and the app
 (defroutes routes
   (GET "/" [] (index))
-  (POST "/game" [] (start-game))
+  (POST "/game" [] (start-game-request))
   (GET ["/game/:id" :id uuid-regex] [id] (get-game-request id))
-  (POST ["/game/:id/roll" :id uuid-regex] [id] (roll-dice id))
+  (POST ["/game/:id/roll" :id uuid-regex] [id] (roll-dice-request id))
   (route/files "/" {:root "resources/public"}))
 
 (def app
