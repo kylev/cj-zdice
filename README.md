@@ -1,6 +1,6 @@
 # cj-zdice
 
-A website written in noir. 
+A website written in om.
 
 ## Usage
 
