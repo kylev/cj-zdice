@@ -23,13 +23,13 @@
 
 (defn start-game-request []
   (let [new-game (assoc (game/new) :id (uuid))]
-    (gstore/save new-game)
+    (gstore/save-game new-game)
     (edn-response new-game)))
 
 (defn get-game-request
   "Get a stored game. 404 if it doesn't exist."
   [id]
-  (let [game (gstore/load id)]
+  (let [game (gstore/load-game id)]
     (if (nil? game)
       {:status 404}
       (edn-response game))))

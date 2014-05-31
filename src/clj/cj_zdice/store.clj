@@ -14,10 +14,10 @@
   [key]
   (str prefix ":" key))
 
-(defn save
+(defn save-game
   [game]
   (wcar* (car/set (ns-key (:id game)) game)))
 
-(defn load
+(defn load-game
   [game-id]
   (wcar* (car/get (ns-key game-id))))
