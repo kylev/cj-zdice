@@ -10,16 +10,23 @@
 
 (def app-state
   (atom {:user "foo"
-         :game-id nil
-         :scoreboard {}}))
+         :game-state {}}))
 
-(defn do-roll [e] (println "Rolling"))
+(println @app-state)
 
-(defn start-game []
+(defn handle-change [])
+
+(defn do-roll [_]
+  "Ask the server to perform a roll."
+  (edn-xhr
+   {:method :post
+    :url (str "/game/" "TODO" "/roll")}))
+
+(defn start-game [app]
   (edn-xhr
     {:method :post
      :url "/game"
-     :on-complete (fn [res] (println res))}))
+     :on-complete #(om/transact! app :game-state (fn [_] %))}))
 
 (defn user-view [app owner]
   (reify
@@ -42,7 +49,8 @@
     om/IRender
     (render [_]
       (dom/button
-        #js {:onClick start-game}
+        #js {:onClick #(start-game app)
+             :className "btn btn-primary"}
         "Start"))))
 
 (defn action-buttons-view [app owner]
@@ -51,9 +59,13 @@
     (render [_]
       (dom/div nil
         (dom/button
-           #js {:onClick do-roll}
-           "Roll")
-        (dom/button nil "Stop")))))
+          #js {:onClick #(do-roll %)
+               :className "btn"}
+          "Roll")
+        (dom/button
+          #js {:onClick #(println @app)
+               :className "btn"}
+          "Stop")))))
 
 (defn game-view [app owner]
   (reify
