@@ -1,19 +1,19 @@
 (defproject cj-zdice "0.3.0-SNAPSHOT"
   :description "FIXME: write this!"
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2173"]
-                 [ring/ring "1.2.2"]
-                 [org.clojure/core.async "0.1.267.0-0d7780-alpha"]
-                 [com.taoensso/carmine "2.6.2"]
-                 [om "0.6.4"]
+                 [org.clojure/clojurescript "0.0-2277"]
+                 [org.clojure/core.async "0.1.338.0-5c5012-alpha"]
+                 [ring/ring "1.3.1"]
+                 [com.taoensso/carmine "2.7.0"]
+                 [om "0.7.1"]
                  [om-sync "0.1.1"]
-                 [compojure "1.1.6"]
+                 [compojure "1.1.9"]
                  [fogus/ring-edn "0.2.0"]]
 
   :min-lein-version "2.1.2"
   :uberjar-name "cj-zdice-standalone.jar"
 
-  :plugins [[lein-cljsbuild "1.0.2"]]
+  :plugins [[lein-cljsbuild "1.0.3"]]
 
   :hooks [leiningen.cljsbuild]
 
