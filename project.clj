@@ -18,15 +18,25 @@
 
   :hooks [leiningen.cljsbuild]
 
-  :source-paths ["src/clj" "src/cljs"]
+  :source-paths ["src/clj"]
   :resource-paths ["resources"]
 
   :cljsbuild {
-    :builds [{:id "dev"
-              :source-paths ["src/cljs"]
+    :builds {
+             :dev
+             {:source-paths ["src/cljs"]
               :compiler {
-                :output-to "resources/public/js/main.js"
+                :output-to "resources/public/js/main-debug.js"
                 :output-dir "resources/public/js/out"
                 :optimizations :none
                 :pretty-print true
-                :source-map "resources/public/js/main.js.map"}}]})
+                :source-map "resources/public/js/main-debug.js.map"}}
+             :prod
+             {:source-paths ["src/cljs"]
+              :compiler {
+                :output-to "resources/public/js/main.js"
+                :optimizations :advanced
+                :pretty-print false
+                :preamble ["react/react.min.js"]
+                :externs ["react/externs/react.js"]}}
+             }})
