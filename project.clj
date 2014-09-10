@@ -27,7 +27,7 @@
              {:source-paths ["src/cljs"]
               :compiler {
                 :output-to "resources/public/js/main-debug.js"
-                :output-dir "resources/public/js/out"
+                :output-dir "resources/public/js/out-debug"
                 :optimizations :none
                 :pretty-print true
                 :source-map "resources/public/js/main-debug.js.map"}}
@@ -35,8 +35,10 @@
              {:source-paths ["src/cljs"]
               :compiler {
                 :output-to "resources/public/js/main.js"
+                :output-dir "resources/public/js/out"
                 :optimizations :advanced
                 :pretty-print false
                 :preamble ["react/react.min.js"]
-                :externs ["react/externs/react.js"]}}
+                :externs ["react/externs/react.js"]
+                :source-map "resources/public/js/main.js.map"}}
              }})
