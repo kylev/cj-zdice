@@ -4,6 +4,7 @@
                  [org.clojure/clojurescript "0.0-2277"]
                  [org.clojure/core.async "0.1.338.0-5c5012-alpha"]
                  [ring/ring "1.3.1"]
+                 [environ "1.0.0"]
                  [com.taoensso/carmine "2.7.0"]
                  [om "0.7.1"]
                  [om-sync "0.1.1"]
