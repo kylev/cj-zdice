@@ -1,11 +1,12 @@
 (ns cj-zdice.server
-  (:require [ring.util.response :refer [file-response]]
+  (:require [ring.util.response :refer [resource-response]]
             [ring.adapter.jetty :refer [run-jetty]]
             [ring.middleware.edn :refer [wrap-edn-params]]
             [compojure.core :refer [defroutes GET POST]]
             [compojure.route :as route]
             [cj-zdice.game :as game]
-            [cj-zdice.store :as gstore]))
+            [cj-zdice.store :as gstore]
+            [environ.core :refer [env]]))
 
 ;; UUID as game identifier.
 (defn uuid [] (str (java.util.UUID/randomUUID)))
@@ -19,7 +20,7 @@
 
 ;; URL handlers
 (defn index []
-  (file-response "public/html/index.html" {:root "resources"}))
+  (resource-response "public/html/index.html"))
 
 (defn start-game-request []
   (let [new-game (assoc (game/new) :id (uuid))]
@@ -44,21 +45,18 @@
   (POST "/game" [] (start-game-request))
   (GET ["/game/:id" :id uuid-regex] [id] (get-game-request id))
   (POST ["/game/:id/roll" :id uuid-regex] [id] (roll-dice-request id))
-  (route/files "/" {:root "resources/public"}))
+  (route/resources "/" {:root "public"})
+  )
 
 (def app
   (-> routes))
 
-(defonce server
-  (run-jetty #'app {:port 8080 :join? false}))
+;;(defonce server
+;;  (run-jetty #'app {:port 8081 :join? false}))
 
 
-;; Disabled server stuff for now.
-(defn -main [& m]
-  (let [mode (keyword (or (first m) :dev))
-        port (Integer. (get (System/getenv) "PORT" "5000"))]
+;; Heroku friendly server
+(defn -main [& [port]]
+  (let [port (Integer. (or port (env :port) "5000"))]
     (run-jetty #'app {:port port :join? false})))
 
-(defn -heroku
-  "Heroku-specialized server runner."[& m]
-  nil)
