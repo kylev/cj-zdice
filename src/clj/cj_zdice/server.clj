@@ -4,9 +4,10 @@
             [ring.middleware.edn :refer [wrap-edn-params]]
             [compojure.core :refer [defroutes GET POST]]
             [compojure.route :as route]
+            [environ.core :refer [env]]
             [cj-zdice.game :as game]
             [cj-zdice.store :as gstore]
-            [environ.core :refer [env]]))
+            [cj-zdice.page :as page]))
 
 ;; UUID as game identifier.
 (defn uuid [] (str (java.util.UUID/randomUUID)))
@@ -17,6 +18,11 @@
   {:status (or status 200)
    :headers {"Content-Type" "application/edn"}
    :body (pr-str data)})
+
+(defn html-response [template & [status]]
+  {:status (or status 200)
+   :headers {"Content-Type" "text/html"}
+   :body (apply str template)})
 
 ;; URL handlers
 (defn index []
@@ -45,15 +51,16 @@
   (POST "/game" [] (start-game-request))
   (GET ["/game/:id" :id uuid-regex] [id] (get-game-request id))
   (POST ["/game/:id/roll" :id uuid-regex] [id] (roll-dice-request id))
+  (GET "/blah" [] (html-response (page/blah "hello")))
   (route/resources "/" {:root "public"})
   )
 
 (def app
   (-> routes))
 
+;; This is the dev server
 ;;(defonce server
 ;;  (run-jetty #'app {:port 8081 :join? false}))
-
 
 ;; Heroku friendly server
 (defn -main [& [port]]
