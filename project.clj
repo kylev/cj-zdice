@@ -9,6 +9,7 @@
                  [om "0.7.1"]
                  [om-sync "0.1.1"]
                  [compojure "1.1.9"]
+                 [enlive "1.1.5"]
                  [fogus/ring-edn "0.2.0"]]
 
   :min-lein-version "2.1.2"
