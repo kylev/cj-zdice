@@ -1,5 +1,3 @@
-resources/public/js/main.js
-resources/public/js/main.js.map
-resources/public/js/out/
+resources/public/js/
 .nrepl-port
 target/
