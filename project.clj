@@ -1,12 +1,12 @@
 (defproject cj-zdice "0.3.0-SNAPSHOT"
   :description "FIXME: write this!"
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2277"]
+                 [org.clojure/clojurescript "0.0-2356"]
                  [org.clojure/core.async "0.1.338.0-5c5012-alpha"]
                  [ring/ring "1.3.1"]
                  [environ "1.0.0"]
-                 [com.taoensso/carmine "2.7.0"]
-                 [om "0.7.1"]
+                 [com.taoensso/carmine "2.7.0" :exclusions [org.clojure/clojure]]
+                 [om "0.7.3"]
                  [om-sync "0.1.1"]
                  [compojure "1.1.9"]
                  [enlive "1.1.5"]
