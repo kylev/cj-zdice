@@ -10,7 +10,7 @@
 
 (def app-state
   (atom {:user "foo"
-         :game-state {}}))
+         :game-state nil}))
 
 (println @app-state)
 
@@ -46,6 +46,8 @@
 
 (defn start-button-view [app owner]
   (reify
+    om/IDisplayName
+    (display-name [_] "StartButton")
     om/IRender
     (render [_]
       (dom/button
@@ -55,6 +57,8 @@
 
 (defn action-buttons-view [app owner]
   (reify
+    om/IDisplayName
+    (display-name [_] "ActionButtons")
     om/IRender
     (render [_]
       (dom/div nil
@@ -67,13 +71,27 @@
                :className "btn"}
           "Stop")))))
 
+(defn controls-view [app owner]
+  (reify
+    om/IDisplayName
+    (display-name [_] "Controls")
+    om/IInitState
+    (init-state [_]
+      {:playing false})
+    om/IWillReceiveProps
+    (will-receive-props [_ next-props] )
+    om/IRenderState
+    (render-state [_ {:keys [playing]}]
+      (om/build (if (nil? (:game-state app)) action-buttons-view start-button-view) app))))
+
 (defn game-view [app owner]
   (reify
+    om/IDisplayName
+    (display-name [_] "Game")
     om/IRender
     (render [_]
       (dom/div nil
-        (om/build start-button-view app)
-        (om/build action-buttons-view app)))))
+        (om/build controls-view app)))))
 
 
 (om/root game-view app-state
