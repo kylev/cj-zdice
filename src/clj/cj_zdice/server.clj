@@ -1,4 +1,5 @@
 (ns cj-zdice.server
+  (:gen-class)
   (:require [ring.util.response :refer [resource-response]]
             [ring.adapter.jetty :refer [run-jetty]]
             [ring.middleware.edn :refer [wrap-edn-params]]
@@ -66,4 +67,3 @@
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) "5000"))]
     (run-jetty #'app {:port port :join? false})))
-

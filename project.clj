@@ -1,19 +1,20 @@
 (defproject cj-zdice "0.3.0-SNAPSHOT"
   :description "FIXME: write this!"
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2356"]
-                 [org.clojure/core.async "0.1.338.0-5c5012-alpha"]
-                 [ring/ring "1.3.1"]
+                 [org.clojure/clojurescript "0.0-2760"]
+                 [org.clojure/core.async "0.1.346.0-17112a-alpha"]
+                 [ring/ring "1.3.2"]
                  [environ "1.0.0"]
-                 [com.taoensso/carmine "2.7.0" :exclusions [org.clojure/clojure]]
+                 [com.taoensso/carmine "2.9.0" :exclusions [org.clojure/clojure]]
                  [om "0.7.3"]
                  [om-sync "0.1.1"]
-                 [compojure "1.1.9"]
+                 [compojure "1.3.1"]
                  [enlive "1.1.5"]
                  [fogus/ring-edn "0.2.0"]]
 
   :min-lein-version "2.1.2"
   :uberjar-name "cj-zdice-standalone.jar"
+  :main ^:skip-aot cj-zdice.server
 
   :plugins [[lein-cljsbuild "1.0.3"]]
 
@@ -21,6 +22,7 @@
 
   :source-paths ["src/clj"]
   :resource-paths ["resources"]
+  :profiles {:uberjar {:aot :all}}
 
   :cljsbuild {
     :builds {
