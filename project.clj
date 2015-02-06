@@ -16,7 +16,7 @@
   :uberjar-name "cj-zdice-standalone.jar"
   :main ^:skip-aot cj-zdice.server
 
-  :plugins [[lein-cljsbuild "1.0.3"]]
+  :plugins [[lein-cljsbuild "1.0.4"]]
 
   :hooks [leiningen.cljsbuild]
 
